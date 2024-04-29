@@ -15,3 +15,5 @@ O jogo é adequado para todas as idades e qualquer pessoa pode jogá-lo
 
 **LIMITAÇÕES E RESTRIÇÕES:**
 O projeto é restrito para o Serial Moniotr do Arduino, não possui nenhum tipo de animação gráfica
+
+João Vitor 
