@@ -8,7 +8,7 @@
     var haVencedor;
 
     haVencedor = false;
-    var tabuleiro = createArray(9);
+    var tabuleiro = Array(9);
     var i;
 
     // Limpar/zerar o tabuleiro
@@ -32,9 +32,9 @@
 
     // Iniciar o jogo, definir quem joga primeiro
     do {
-        console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-        console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-        console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+        console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+        console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+        console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
         jogada = "";
 
         // Anotar/Registrar a jogada do primeiro jogador
