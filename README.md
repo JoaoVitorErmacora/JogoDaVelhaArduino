@@ -17,3 +17,4 @@ O jogo é adequado para todas as idades e qualquer pessoa pode jogá-lo
 O projeto é restrito para o Serial Moniotr do Arduino, não possui nenhum tipo de animação gráfica
 
 João Vitor 
+29/04/2024
