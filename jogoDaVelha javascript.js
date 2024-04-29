@@ -32,20 +32,20 @@
 
     // Iniciar o jogo, definir quem joga primeiro
     do {
-        window.alert(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-        window.alert(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-        window.alert(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+        console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
+        console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
+        console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
         jogada = "";
 
         // Anotar/Registrar a jogada do primeiro jogador
-        window.alert("Digite a posição da sua peça Jogador" + jogadorDaVez);
+        console.log("Digite a posição da sua peça Jogador" + jogadorDaVez);
         jogada = window.prompt('Enter a value for jogada');
         validaPosicao(2);
 
         // simula a função Serial.parseInt()do Arduino
         linha = parseInt(jogada.charAt(0));
         coluna = parseInt(jogada.charAt(2));
-        window.alert("Linha:" + linha + ",Coluna:" + coluna);
+        console.log("Linha:" + linha + ",Coluna:" + coluna);
 
         // Verificar se a posição jogada é válida
         // Converter a jogada texto em inteiro
@@ -76,7 +76,7 @@
 
             // Anotar e registrar a jogada do segundo jogador
         } else {
-            window.alert("Posição ocupada, jogue novamente");
+            console.log("Posição ocupada, jogue novamente");
 
             // Informar ao jogador 1 que a posição está preenchida, e ele precisa informar uma posição válida
         }
@@ -84,9 +84,9 @@
         // Verificar jogada ganhadora nas linhas
     } while (!haVencedor && velha < 9);
     if (haVencedor) {
-        window.alert("Parabéns pela a vitória, jogador " + jogadorDaVez);
+        console.log("Parabéns pela a vitória, jogador " + jogadorDaVez);
     } else {
-        window.alert("Deu velha!");
+        console.log("Deu velha!");
     }
 }
 
@@ -94,7 +94,7 @@ function validaPosicao(entrada) {
     var entradaValida;
 
     entradaValida = false;
-    window.alert(entrada.length());
+    console.log(entrada.length());
     if (entrada.length() == 3) {
         if (entrada.charAt(0) == "0" || entrada.charAt(0) == "1" || entrada.charAt(0) == "2") {
             if (entrada.charAt(2) == "0" || entrada.charAt(2) == "1" || entrada.charAt(2) == "2") {
