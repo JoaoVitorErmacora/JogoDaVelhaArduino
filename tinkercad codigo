@@ -1,0 +1,47 @@
+//definir as variáveis
+int velha = 1;
+int linha;
+int coluna;
+bool HaVencedor;
+int tabuleiro[3][3] = {
+  {0,0,0},
+  {0,0,0},
+  {0,0,0}
+};
+int index;
+
+String jogador1 = "Jogador 1";
+String jogador2 = "Jogador 2";
+String jogada;
+//iniciar o jogo, definir quem joga primeiro
+int jogadorDaVez = 1;
+//anotar/registrar a jogada do primeiro jogador
+
+//inicializar o programa
+void setup(){
+  Serial.begin (115200);
+  pinMode(LED_BUILTIN, OUTPUT);
+  
+  for (int i = 0; i < 3; i++) {
+    if (i == 1 || i == 2){
+        Serial.println(" ");
+      }
+	for (int j = 0; j < 3; j++) {
+		Serial.print(tabuleiro[i][j]);
+      
+	}
+  }
+  
+  Serial.println("");
+  Serial.print("Digite a posicao da sua peca jogador");
+  Serial.println(jogadorDaVez);
+
+  jogada = Serial.readstring();
+  linha = jogada[0].toInt();
+}
+
+void loop(){
+  
+  
+  
+}
