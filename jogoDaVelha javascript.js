@@ -34,9 +34,9 @@
     // Anotar/Registrar a jogada, do primeiro jogador
     velha = 1;
     do {
-      console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-      console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-      console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+      console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+      console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+      console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
       jogada = "";
       console.log("Digite a posição da sua peça JOGADOR " + jogadorDaVez);
       jogada = window.prompt("Enter a value for jogada");
@@ -45,7 +45,7 @@
         // Simula a função Serial.parseInt() do Arduino
         linha = parseInt(jogada.charAt(0));
   
-        // CORRIGIR O ERRO DE DIGITAÇÃO
+        // CORRIGIR O ERRO DE DIGItAÇÃO
         coluna = parseInt(jogada.charAt(2));
         console.log("Linha: " + linha + "; Coluna: " + coluna);
   
@@ -90,7 +90,7 @@
               ) {
                 haVencedor = true;
               } else {
-                // Trocar o jogador
+                // trocar o jogador
                 if (jogadorDaVez == 1) {
                   jogadorDaVez = 2;
                 } else {
@@ -118,16 +118,16 @@
     } else {
       console.log("Deu VELHA!!!");
     }
-    console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-    console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-    console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+    console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+    console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+    console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
   }
   
   function validaPosicao(entrada) {
     // Função para validar a entrada da jogada por meio de texto, o formato deve ser:
     // Primeiro caracter: 0 ou 1 ou 2
     // Segundo caracter: qualquer um
-    // Terceiro caracter: 0 ou 1 ou 2
+    // terceiro caracter: 0 ou 1 ou 2
     var entradaValida;
   
     entradaValida = false;
