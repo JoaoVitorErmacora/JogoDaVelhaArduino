@@ -33,20 +33,13 @@
     // Iniciar o jogo, definir quem joga primeiro
     do {
 <<<<<<< HEAD
-       console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-       console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-       console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+       console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+       console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+       console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
         jogada = "";
        console.log("Digite a posição da sua peça JOGADOR " + jogadorDaVez);
 =======
-        console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
-        console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
-        console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
-        jogada = "";
-
-        // Anotar/Registrar a jogada do primeiro jogador
-        console.log("Digite a posição da sua peça Jogador" + jogadorDaVez);
->>>>>>> parent of a5d0c33 (alteração window alert para console log)
+       
         jogada = window.prompt('Enter a value for jogada');
         validaPosicao(2);
 
@@ -56,7 +49,7 @@
         console.log("Linha:" + linha + ",Coluna:" + coluna);
 
 <<<<<<< HEAD
-            // CORRIGIR O ERRO DE DIGITAÇÃO
+            // CORRIGIR O ERRO DE DIGItAÇÃO
             coluna = parseInt(jogada.charAt(2));
            console.log("Linha: " + linha + "; Coluna: " + coluna);
 =======
@@ -92,7 +85,6 @@
 
                 // Informar ao Jogador 1 que a posição está preenchida, é inválida e ele precisa informar um posição válida.
 =======
->>>>>>> parent of a5d0c33 (alteração window alert para console log)
             }
             velha = velha + 1;
 
@@ -101,10 +93,7 @@
 <<<<<<< HEAD
            console.log("Jogada inválida !!!");
 =======
-            console.log("Posição ocupada, jogue novamente");
-
-            // Informar ao jogador 1 que a posição está preenchida, e ele precisa informar uma posição válida
->>>>>>> parent of a5d0c33 (alteração window alert para console log)
+>>>>
         }
 
         // Verificar jogada ganhadora nas linhas
@@ -115,9 +104,9 @@
 <<<<<<< HEAD
        console.log("Deu VELHA!!!");
     }
-   console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-   console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-   console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+   console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+   console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+   console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
 }
 
 function getValArrayInt(linha, coluna, matriz, qtdeLinhas) {
@@ -127,31 +116,21 @@ function getValArrayInt(linha, coluna, matriz, qtdeLinhas) {
     
     return valor;
 =======
-        console.log("Deu velha!");
-    }
->>>>>>> parent of a5d0c33 (alteração window alert para console log)
-}
-
+     
 function validaPosicao(entrada) {
     var entradaValida;
 
     entradaValida = false;
 <<<<<<< HEAD
-   console.log(entrada.length());
-    if (entrada.length() == 3) {
+   console.log entrada.length();
+    if entrada.length() == 3 {
        console.log("Comprimento da string igual  3");
         if (entrada.charAt(0) == "0" || entrada.charAt(0) == "1" || entrada.charAt(0) == "2") {
            console.log(entrada.charAt(0));
             if (entrada.charAt(2) == "0" || entrada.charAt(2) == "1" || entrada.charAt(2) == "2") {
                console.log(entrada.charAt(2));
 =======
-    console.log(entrada);
-    if (entrada() == 3) {
-        if (entrada.charAt(0) == "0" || entrada.charAt(0) == "1" || entrada.charAt(0) == "2") {
-            if (entrada.charAt(2) == "0" || entrada.charAt(2) == "1" || entrada.charAt(2) == "2") {
->>>>>>> parent of a5d0c33 (alteração window alert para console log)
-                entradaValida = true;
-            }
+   
         }
     }
     
