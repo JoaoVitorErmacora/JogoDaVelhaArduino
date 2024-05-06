@@ -1,0 +1,131 @@
+
+
+// Headers
+string toString (double);
+int toInt (string);
+double toDouble (string);
+string validaPosicao(string entrada);
+
+int main() {
+    // Criar o tabuleiro e jogadores, zerar as variáveis
+    // 
+    // 0: posição vazia
+    // 1: jogada na posição do jogador 1
+    // 2: jogada na posição do jogador 2
+    int velha;
+    bool haVencedor;
+
+    haVencedor = false;
+    int tabuleiro[9];
+    int i;
+
+    // Limpar/zerar o tabuleiro
+    for (i = 0; i <= 8; i++) {
+        tabuleiro[i] = 0;
+    }
+    string jogador1;
+
+    jogador1 = "jogador 1";
+    string jogador2;
+
+    jogador2 = "jogador 2";
+    int jogadorDaVez;
+
+    jogadorDaVez = 1;
+    string jogada;
+    int linha;
+    int coluna;
+
+    velha = 1;
+
+    // Iniciar o jogo, definir quem joga primeiro
+    do {
+        serial.print << tabuleiro[0] << tabuleiro[1] << tabuleiro[2] << endl;
+        serial.print << tabuleiro[3] << tabuleiro[4] << tabuleiro[5] << endl;
+        serial.print << tabuleiro[6] << tabuleiro[7] << tabuleiro[8] << endl;
+        jogada = "";
+
+        // Anotar/Registrar a jogada do primeiro jogador
+        serial.print << "Digite a posição da sua peça Jogador" << jogadorDaVez << endl;
+        cin >> jogada;
+        validaPosicao(2);
+
+        // simula a função Serial.parseInt()do Arduino
+        linha = toInt(jogada[0]);
+        coluna = toInt(jogada[2]);
+        serial.print << "Linha:" << linha << ",Coluna:" << coluna << endl;
+
+        // Verificar se a posição jogada é válida
+        // Converter a jogada texto em inteiro
+        if (tabuleiro[3 * linha + coluna] == 0) {
+            tabuleiro[3 * linha + coluna] = jogadorDaVez;
+            if (tabuleiro[0] == jogadorDaVez && tabuleiro[1] == jogadorDaVez && tabuleiro[2] == jogadorDaVez || tabuleiro[3] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[5] == jogadorDaVez || tabuleiro[6] == jogadorDaVez && tabuleiro[7] == jogadorDaVez && tabuleiro[8] == jogadorDaVez) {
+                haVencedor = true;
+            } else {
+                if (tabuleiro[0] == jogadorDaVez && tabuleiro[3] == jogadorDaVez && tabuleiro[6] == jogadorDaVez || tabuleiro[1] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[7] == jogadorDaVez || tabuleiro[2] == jogadorDaVez && tabuleiro[5] == jogadorDaVez && tabuleiro[8] == jogadorDaVez) {
+
+                    // Verificar jogada ganhadora na coluna
+                    haVencedor = true;
+                } else {
+                    if (tabuleiro[0] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[8] == jogadorDaVez || tabuleiro[2] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[6] == jogadorDaVez) {
+
+                        // Verificar jogada ganhadora nas diagonais
+                        haVencedor = true;
+                    } else {
+                        if (jogadorDaVez == 1) {
+                            jogadorDaVez = 2;
+                        } else {
+                            jogadorDaVez = 1;
+                        }
+                    }
+                }
+            }
+            velha = velha + 1;
+
+            // Anotar e registrar a jogada do segundo jogador
+        } else {
+            serial.print << "Posição ocupada, jogue novamente" << endl;
+
+            // Informar ao jogador 1 que a posição está preenchida, e ele precisa informar uma posição válida
+        }
+
+        // Verificar jogada ganhadora nas linhas
+    } while (!haVencedor && velha < 9);
+    if (haVencedor) {
+        serial.print << "Parabéns pela a vitória, jogador " << jogadorDaVez << endl;
+    } else {
+        serial.print << "Deu velha!" << endl;
+    }
+    return 0;
+}
+
+string validaPosicao(string entrada) {
+    bool entradaValida;
+
+    entradaValida = false;
+    serial.print << entrada.length() << endl;
+    if (entrada.length() == 3) {
+        if (entrada[0] == "0" || entrada[0] == "1" || entrada[0] == "2") {
+            if (entrada[2] == "0" || entrada[2] == "1" || entrada[2] == "2") {
+                entradaValida = true;
+            }
+        }
+    }
+    
+    return entradaValida;
+}
+
+// The following implements type conversion functions.
+string toString (double value) { //int also
+    stringstream temp;
+    temp << value;
+    return temp.str();
+}
+
+int toInt (string text) {
+    return atoi(text.c_str());
+}
+
+double toDouble (string text) {
+    return atof(text.c_str());
+}

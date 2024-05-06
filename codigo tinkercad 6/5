@@ -1,0 +1,114 @@
+//definir as variáveis
+int velha = 1;
+int linha;
+int coluna;
+bool HaVencedor = false;
+int tabuleiro[3][3] = {
+  { 0, 0, 0 },
+  { 0, 0, 0 },
+  { 0, 0, 0 }
+};
+int index;
+String jogada = "";
+
+String jogador1 = "Jogador 1";
+String jogador2 = "Jogador 2";
+
+//iniciar o jogo, definir quem joga primeiro
+int jogadorDaVez = 1;
+
+//função para validar a jogada
+boolean verificaJogada(String jogada, int linha, int coluna) {
+  boolean jogadaValida = false;
+  if (jogada.length() == 3) {
+    if (linha == 0 || linha == 1 || linha == 2) {
+      if (coluna == 0 || coluna == 1 || coluna == 2) {
+        jogadaValida = true;
+      }
+    }
+  }
+  return jogadaValida;
+}
+
+//inicializa o programa
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED_BUILTIN, OUTPUT);
+
+  //limpa a matriz do tabuleiro no inicio da partida
+  for (int i = 0; i < 3; i++) {
+    if (i == 1 || i == 2) {
+      Serial.println(" ");
+    }
+
+    for (int j = 0; j < 3; j++) {
+      Serial.print(tabuleiro[i][j]);
+    }
+  }
+
+  //pede ao usuário inserir sua jogada
+  Serial.println("");
+  Serial.print("Digite a posicao da sua peca jogador");
+  Serial.println(jogadorDaVez);
+}
+
+
+void loop() {
+  if (Serial.available() > 0) {
+
+    //lê a jogada e armazena na serial
+    jogada = Serial.readString();
+    Serial.println(jogada);
+    
+    //
+
+    //converte a jogada texto em inteiro
+    linha = jogada.substring(0, 1).toInt();
+    coluna = jogada.substring(2, 3).toInt();
+
+    //valida a jogada no monitor serial
+    Serial.println(verificaJogada(jogada, linha, coluna));
+
+    //se a jogada for INVÁLIDA, peça a jogada novamente
+    if (verificaJogada(jogada, linha, coluna) == false) {
+      Serial.println("JOGADA INVALIDA!!");
+      Serial.println(" ");
+      Serial.print("Digite a posicao da sua peca jogador");
+      Serial.println(jogadorDaVez);
+    }
+
+    //se a jogada for VÁLIDA, imprima o tabuleiro e armazene na matriz
+    else {
+      if (tabuleiro[linha][coluna] == 0) {
+
+        tabuleiro[linha][coluna] = jogadorDaVez;
+        for (int i = 0; i < 3; i++) {
+          if (i == 1 || i == 2) {
+            Serial.println(" ");
+          }
+          for (int j = 0; j < 3; j++) {
+            Serial.print(tabuleiro[i][j]);
+          }
+        }
+
+        //trocar o jogador da vez e pedir a jogada
+        if (jogadorDaVez == 1) {
+          jogadorDaVez = 2;
+        } else {
+          jogadorDaVez = 1;
+        }
+
+
+        Serial.println(" ");
+        Serial.print("Digite a posicao da sua peca jogador");
+        Serial.println(jogadorDaVez);
+      }else{
+        Serial.println("Posicao ocupada");
+        Serial.print("Digite a jogada novamente jogador");
+        Serial.println(jogadorDaVez);
+
+      }
+    }
+  }
+}
+
