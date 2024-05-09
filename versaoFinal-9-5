@@ -1,8 +1,9 @@
 //definir as variáveis
+int c = 0;
 int velha = 1;
 int linha;
 int coluna;
-bool HaVencedor = false;
+boolean HaVencedor = false;
 int tabuleiro[3][3] = {
   { 0, 0, 0 },
   { 0, 0, 0 },
@@ -10,7 +11,6 @@ int tabuleiro[3][3] = {
 };
 int index;
 String jogada = "";
-
 String jogador1 = "Jogador 1";
 String jogador2 = "Jogador 2";
 
@@ -38,7 +38,7 @@ void setup() {
   //limpa a matriz do tabuleiro no inicio da partida
   for (int i = 0; i < 3; i++) {
     if (i == 1 || i == 2) {
-      Serial.println(" ");
+      Serial.println("");
     }
 
     for (int j = 0; j < 3; j++) {
@@ -54,13 +54,16 @@ void setup() {
 
 
 void loop() {
-  if (Serial.available() > 0) {
+
+  
+
+  do {
+
+    while (!Serial.available());
 
     //lê a jogada e armazena na serial
     jogada = Serial.readString();
     Serial.println(jogada);
-    
-    //
 
     //converte a jogada texto em inteiro
     linha = jogada.substring(0, 1).toInt();
@@ -72,7 +75,6 @@ void loop() {
     //se a jogada for INVÁLIDA, peça a jogada novamente
     if (verificaJogada(jogada, linha, coluna) == false) {
       Serial.println("JOGADA INVALIDA!!");
-      Serial.println(" ");
       Serial.print("Digite a posicao da sua peca jogador");
       Serial.println(jogadorDaVez);
     }
@@ -84,31 +86,77 @@ void loop() {
         tabuleiro[linha][coluna] = jogadorDaVez;
         for (int i = 0; i < 3; i++) {
           if (i == 1 || i == 2) {
-            Serial.println(" ");
+            Serial.println("");
           }
           for (int j = 0; j < 3; j++) {
             Serial.print(tabuleiro[i][j]);
           }
         }
 
+        //verificar jogada vencedora nas linhas
+        if ((tabuleiro[0][0] == jogadorDaVez && tabuleiro[0][1] == jogadorDaVez && tabuleiro[0][2] == jogadorDaVez) || 
+        (tabuleiro[1][0] == jogadorDaVez && tabuleiro[1][1] == jogadorDaVez && tabuleiro[1][2] == jogadorDaVez) || 
+        (tabuleiro[2][0] == jogadorDaVez && tabuleiro[2][1] == jogadorDaVez && tabuleiro[2][2] == jogadorDaVez)) {
+          HaVencedor = true;
+          c = 1;
+        }
+        //verificar jogada vencedora nas colunas 
+       else  if ((tabuleiro[0][0] == jogadorDaVez && tabuleiro[1][0] == jogadorDaVez && tabuleiro[2][0] == jogadorDaVez) || 
+        (tabuleiro[0][1] == jogadorDaVez && tabuleiro[1][1] == jogadorDaVez && tabuleiro[2][1] == jogadorDaVez) || 
+        (tabuleiro[0][2] == jogadorDaVez && tabuleiro[1][2] == jogadorDaVez && tabuleiro[2][2] == jogadorDaVez)) {
+          HaVencedor = true;
+          c = 2;
+        }
+        //verificar jogada vencedora nas diagonais
+        else  if ((tabuleiro[0][0] == jogadorDaVez && tabuleiro[1][1] == jogadorDaVez && tabuleiro[2][2] == jogadorDaVez) || 
+        (tabuleiro[0][2] == jogadorDaVez && tabuleiro[1][1] == jogadorDaVez && tabuleiro[2][0] == jogadorDaVez)){
+          HaVencedor = true;
+          c = 3;
+        }
+
         //trocar o jogador da vez e pedir a jogada
-        if (jogadorDaVez == 1) {
+        if (jogadorDaVez == 1 && !HaVencedor ) {
           jogadorDaVez = 2;
         } else {
           jogadorDaVez = 1;
         }
-
-
         Serial.println(" ");
         Serial.print("Digite a posicao da sua peca jogador");
         Serial.println(jogadorDaVez);
-      }else{
+
+      } else {
         Serial.println("Posicao ocupada");
         Serial.print("Digite a jogada novamente jogador");
         Serial.println(jogadorDaVez);
-
       }
-    }
-  }
-}
 
+      //atribui +1 ao valor da velha após cada jogada
+      velha = velha + 1;
+    }
+
+  } while (!HaVencedor && velha <= 9);
+ if(velha == 9) {
+  	c = 4;
+	}
+  switch(c){
+    case 1: Serial.print("PARABENS JOGADOR");
+     Serial.println(jogadorDaVez);
+     velha = 1;
+    break;
+
+   case 2: Serial.print("PARABENS JOGADOR");
+     Serial.println(jogadorDaVez);
+     velha = 1;
+   break;
+   
+
+   case 3: Serial.print("PARABENS JOGADOR");
+     Serial.println(jogadorDaVez);
+     velha = 1;
+   break;
+
+   case 4: Serial.println ("DEU VELHA!!");
+     velha = 1;
+ }
+ 
+}
